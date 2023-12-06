@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <header>
+      <h1>Tic-Tac-Toe</h1>
+      <h2>X goes first.</h2>
+    </header>
+    <div class="game-board">
+      <div class="game-board__board-wrapper">
+        <div class="game-board__cell" id="cell-0-0"></div>
+        <div class="game-board__cell" id="cell-0-1"></div>
+        <div class="game-board__cell" id="cell-0-2"></div>
+        <div class="game-board__cell" id="cell-1-0"></div>
+        <div class="game-board__cell" id="cell-1-1"></div>
+        <div class="game-board__cell" id="cell-1-2"></div>
+        <div class="game-board__cell" id="cell-2-0"></div>
+        <div class="game-board__cell" id="cell-2-1"></div>
+        <div class="game-board__cell" id="cell-2-2"></div>
+      </div>
+    </div>
+
+    <div class="restart-button">
+      <button class="restart-button__button">New Game</button>
+    </div>
+    <div class="win-status">
+      <h3 class="win-status--grid-1">X-Wins</h3>
+      <h3 class="win-status--grid-2">O-Wins</h3>
+      <div class="win-status__win-value win-status--grid-3" id="x-win-field">
+        0
+      </div>
+      <div class="win-status__win-value win-status--grid-4" id="o-win-field">
+        0
+      </div>
+    </div>
+    <footer>By Matt Villa</footer>
+  </body>
+</html>
