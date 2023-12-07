@@ -57,11 +57,12 @@ class Board {
   /**
    * Returns the mark of the winning piece if a 3 in a row condition exists on the board. Returns an empty string if there is no winning position.
    * @returns {string} The winning mark (3 in a row), or an empty string.
-   */ getWinner() {
+   */
+  getWinningMarker() {
     for (let row = 0; row < this._board.length; row++) {
       for (let col = 0; col < this._board[row].length; col++) {
-        if (this.checkWinner(row, col)) {
-          return this.checkWinner(row, col);
+        if (this.getWinningPositions(row, col)) {
+          return this._board[row][col];
         }
       }
     }
@@ -69,59 +70,59 @@ class Board {
   }
 
   /**
-   * Given a board coordinate, checks if it is within a winning position (3 in a row). Returns the mark if is in the winning position, otherwise returns an empty string.
-   * @param {number} row - The board row index to check.
-   * @param {number} col - The board column index to check.
-   * @returns {string} The mark at the given board location, or an empty string
-   * @throws {Error} Throws an error if the specified location is invalid.
+   * Checks for a winning sequence starting from the provided coordinates in the game board.
+   * @param {number} row - The row index of the starting position.
+   * @param {number} col - The column index of the starting position.
+   * @returns {Array<Array<number>>} An array of winning positions if a winning sequence is found starting from the given position. If no winning sequence is found, an empty array is returned.
+   * @throws {Error} Throws an error if the provided location does not exist on the board.
    */
-  checkWinner(row, col) {
+  getWinningPositions(row, col) {
     if (row >= this._board.length || col >= this._board[row].length) {
       throw new Error("Location does not exist on the Board.");
     }
 
     //stop early if at an empty position
     if (!this._board[row][col]) {
-      return "";
+      return [];
     }
 
+    let winningPositions = [];
     let checkMarker = this._board[row][col];
-    let count = 0;
 
     //check horizontal
     for (let checkCol = col; checkCol < this._board[row].length; checkCol++) {
       if (this._board[row][checkCol] == checkMarker) {
-        count++;
+        winningPositions.push([row, checkCol]);
       }
     }
     for (let checkCol = col - 1; checkCol >= 0; checkCol--) {
       if (this._board[row][checkCol] == checkMarker) {
-        count++;
+        winningPositions.push([row, checkCol]);
       }
     }
 
-    if (count == 3) {
-      return checkMarker;
+    if (winningPositions.length == 3) {
+      return winningPositions;
     } else {
-      count = 0;
+      winningPositions.length = 0;
     }
 
     //check vertical
     for (let checkRow = row; checkRow < this._board.length; checkRow++) {
       if (this._board[checkRow][col] == checkMarker) {
-        count++;
+        winningPositions.push([checkRow, col]);
       }
     }
     for (let checkRow = row - 1; checkRow >= 0; checkRow--) {
       if (this._board[checkRow][col] == checkMarker) {
-        count++;
+        winningPositions.push([checkRow, col]);
       }
     }
 
-    if (count == 3) {
-      return checkMarker;
+    if (winningPositions.length == 3) {
+      return winningPositions;
     } else {
-      count = 0;
+      winningPositions.length = 0;
     }
 
     //check right diagonal
@@ -129,7 +130,7 @@ class Board {
     let checkCol = col;
     while (checkRow >= 0 && checkCol < this._board[checkRow].length) {
       if (this._board[checkRow][checkCol] === checkMarker) {
-        count++;
+        winningPositions.push([checkRow, checkCol]);
       } else {
         break;
       }
@@ -142,7 +143,7 @@ class Board {
 
     while (checkRow < this._board.length && checkCol >= 0) {
       if (this._board[checkRow][checkCol] === checkMarker) {
-        count++;
+        winningPositions.push([checkRow, checkCol]);
       } else {
         break;
       }
@@ -150,10 +151,10 @@ class Board {
       checkCol--;
     }
 
-    if (count == 3) {
-      return checkMarker;
+    if (winningPositions.length == 3) {
+      return winningPositions;
     } else {
-      count = 0;
+      winningPositions.length = 0;
     }
 
     checkRow = row;
@@ -162,7 +163,7 @@ class Board {
     //check left diagonal
     while (checkRow >= 0 && checkCol >= 0) {
       if (this._board[checkRow][checkCol] === checkMarker) {
-        count++;
+        winningPositions.push([checkRow, checkCol]);
       } else {
         break;
       }
@@ -178,7 +179,7 @@ class Board {
       checkCol <= this._board[checkRow].length
     ) {
       if (this._board[checkRow][checkCol] === checkMarker) {
-        count++;
+        winningPositions.push([checkRow, checkCol]);
       } else {
         break;
       }
@@ -186,10 +187,10 @@ class Board {
       checkCol++;
     }
 
-    if (count == 3) {
-      return checkMarker;
+    if (winningPositions.length == 3) {
+      return winningPositions;
     } else {
-      return "";
+      return [];
     }
   }
 
@@ -237,4 +238,4 @@ class Board {
   }
 }
 
-module.exports = { Board };
+module.exports = Board;
