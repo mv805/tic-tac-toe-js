@@ -6,10 +6,10 @@ class UIBuilder {
    * Builds the game UI.
    */
   buildUI() {
-    document.body.appendChild(this.createHeader());
-    document.body.appendChild(this.createGameBoard());
-    document.body.appendChild(this.createNewGameButton());
-    document.body.appendChild(this.createWinStatusArea());
+    document.body.appendChild(this._createHeader());
+    document.body.appendChild(this._createGameBoard());
+    document.body.appendChild(this._createNewGameButton());
+    document.body.appendChild(this._createWinStatusArea());
 
     const footer = document.createElement("footer");
     footer.textContent = "By Matt Villa";
@@ -21,7 +21,7 @@ class UIBuilder {
    * Creates the game board.
    * @returns {HTMLElement} The created game board element.
    */
-  createGameBoard() {
+  _createGameBoard() {
     const board = document.createElement("div");
     board.classList.add("game-board");
 
@@ -46,7 +46,7 @@ class UIBuilder {
    * Creates the header for the game.
    * @returns {HTMLElement} The created header element.
    */
-  createHeader() {
+  _createHeader() {
     const header = document.createElement("header");
     const title = document.createElement("h1");
     title.textContent = "Tic-Tac-Toe";
@@ -62,7 +62,7 @@ class UIBuilder {
    * Creates the win status area for displaying game results.
    * @returns {HTMLElement} The created win status area element.
    */
-  createWinStatusArea() {
+  _createWinStatusArea() {
     const winStatusArea = document.createElement("div");
     winStatusArea.classList.add("win-status");
 
@@ -96,7 +96,7 @@ class UIBuilder {
    * Creates the button for starting a new game.
    * @returns {HTMLElement} The created new game button element.
    */
-  createNewGameButton() {
+  _createNewGameButton() {
     const restartButtonWrapper = document.createElement("div");
     restartButtonWrapper.classList.add("restart-button");
 

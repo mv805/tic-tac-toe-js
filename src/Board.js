@@ -198,11 +198,11 @@ class Board {
    * Clears the game board, resetting it to an empty 3x3 board.
    */
   clearBoard() {
-    this._board = [
-      ["", "", ""],
-      ["", "", ""],
-      ["", "", ""],
-    ];
+    for (let row = 0; row < this._board.length; row++) {
+      for (let col = 0; col < this._board[row].length; col++) {
+        this._board[row][col] = ""; // Set each cell to an empty string
+      }
+    }
   }
 
   /**

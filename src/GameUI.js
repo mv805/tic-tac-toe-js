@@ -4,6 +4,7 @@ const UIBuilder = require("./UIBuilder.js");
  * Game UI accesible interface for getting elements from the DOM and making changes.
  */
 class GameUI {
+  
   /**
    * Retrieves all board cells or cells matching a specific marker.
    * @param {string} [markerToMatch] - Optional marker value to match against cell content.
@@ -20,21 +21,47 @@ class GameUI {
       return document.querySelectorAll(".game-board__cell");
     }
   }
+  /**
+   * Builds the UI components for the tic tac toe game.
+   */
   initialize() {
     const uiBuilder = new UIBuilder();
     uiBuilder.buildUI();
   }
 
-  updateCellMarker() {
-    //updates a board cell with a given marker
+  /**
+   * Updates a board cell with a given marker.
+   * @param {number} row - The row of the cell.
+   * @param {number} col - The column of the cell.
+   * @param {string} marker - The marker to update the cell with.
+   */
+  updateCellMarker(row, col, marker) {
+    const cell = this.getCell(row, col);
+    cell.textContent = marker;
   }
 
-  getCell() {
-    //returns the cell node at the given coordinate
+  /**
+   * Retrieves the cell element based on the row and column identifiers.
+   * @param {number} row - The row of the cell.
+   * @param {number} col - The column of the cell.
+   * @returns {HTMLElement} The cell element.
+   */
+  getCell(row, col) {
+    const cell = document.querySelector(`#cell-${row}-${col}`);
+    return cell;
   }
 
+  /**
+   * Clears all the cells of any markers.
+   */
   clearCells() {
-    //clears all the cells of any markers
+    const boardCells = this.getBoardCells();
+
+    for (let cell of boardCells) {
+      const cellId = cell.id;
+      const [, row, col] = cellId.split("-").map(Number);
+      this.updateCellMarker(row, col, "");
+    }
   }
 
   updateScore() {
@@ -46,8 +73,8 @@ class GameUI {
   }
 
   getNewGameButton() {
-    //returns the new game button
-    const restartButton = document.querySelector(".restart-button__button");
+    const newGameButton = document.querySelector(".restart-button__button");
+    return newGameButton;
   }
 }
 
