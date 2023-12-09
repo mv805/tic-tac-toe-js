@@ -71,7 +71,6 @@ class Game {
    * Reset all the game state and prepare the board for another new game.
    */
   resetGame(event) {
-    console.log(event.type);
     //clear the game board
     this._gameBoard.clearBoard();
     //clear the screen board
@@ -80,8 +79,14 @@ class Game {
     this.setResetButtonListener();
     this.setCellClickListeners();
 
+    //remove the cell highlights of the winning combo
+    this._gameUI.removeCellHighlights();
+
     //reset to 'x' as the first player to go.
     this.currentPlayer = this._xPlayer;
+
+    //reset the game status field to default text
+    this._gameUI.setGameStatusField();
   }
 
   /**
@@ -96,7 +101,7 @@ class Game {
   handlePlayerCellClick(event) {
     const cellId = event.target.id;
     const [, row, col] = cellId.split("-").map(Number);
-    const targetCell = this._gameUI.getCell(row, col);
+    const targetCell = event.target;
 
     //check if a clicked cell is already full, if it is full,
     //do nothing and return
@@ -110,14 +115,30 @@ class Game {
       this.removeClickListener(targetCell);
     }
 
-    //
     //then check for a win, if there is a win:
-    //    increment the wins++ for the player that won
-    //    update the player wins on the screen
-    //    highlight the game winning combo on the screen
-    //    lock the board
-    //    remove all the cell click listeners (not reset button)
-
+    const winningCombo = this._gameBoard.getWinningPositions(row, col);
+    if (winningCombo.length === 3) {
+      //    increment the wins++ for the player that won
+      this.currentPlayer.incrementScore();
+      //    update the player wins on the screen
+      this._gameUI.updateScore(
+        this.currentPlayer.marker,
+        this.currentPlayer.score
+      );
+      //    highlight the game winning combo on the screen
+      for (let cellCoordinate of winningCombo) {
+        const [row, col] = cellCoordinate;
+        this._gameUI.highlightWinningCombo(row, col);
+      }
+      //    lock the board
+      //    remove all the cell click listeners
+      this.setCellClickListeners(false);
+      //set the winner text in the game status field
+      this._gameUI.setGameStatusField(
+        `The ${this.currentPlayer.marker.toUpperCase()} Player Wins!`
+      );
+      return;
+    }
     //otherwise just switch to the other player
     this.toggleCurrentPlayer();
   }

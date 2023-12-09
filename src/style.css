@@ -26,6 +26,10 @@ header h2 {
   align-items: center;
 }
 
+#game-status-field {
+  color: white;
+}
+
 .game-board__board-wrapper {
   height: 350px;
   width: 350px;
@@ -56,12 +60,12 @@ header h2 {
   box-shadow: 0 0 10px #ffffff;
 }
 
-.restart-button {
+.new-game-button {
   display: flex;
   justify-content: center;
   margin: 2rem 0;
 }
-.restart-button__button {
+.new-game-button__button {
   background-color: #424242;
   border-radius: 8px;
   border: 2px solid rgba(255, 255, 255, 0);
@@ -83,11 +87,11 @@ header h2 {
   user-select: none;
 }
 
-.restart-button__button:hover {
+.new-game-button__button:hover {
   border: 2px solid white;
 }
 
-.restart-button__button:active {
+.new-game-button__button:active {
   background-color: rgb(255, 255, 255);
   color: rgb(114, 114, 114);
 }
@@ -115,6 +119,7 @@ header h2 {
 .win-status__win-value {
   font-weight: 100;
   font-size: 2rem;
+  color: white;
 }
 
 .win-status--grid-1 {
@@ -152,8 +157,6 @@ footer {
     width: 200px;
   }
   .game-board__cell {
-
     font-size: 3rem;
-
   }
 }

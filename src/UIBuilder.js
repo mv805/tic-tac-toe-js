@@ -24,6 +24,7 @@ class UIBuilder {
   _createGameBoard() {
     const board = document.createElement("div");
     board.classList.add("game-board");
+    board.setAttribute("data-cy","game-board");
 
     const boardWrapper = document.createElement("div");
     boardWrapper.classList.add("game-board__board-wrapper");
@@ -35,6 +36,8 @@ class UIBuilder {
         const cell = document.createElement("div");
         cell.classList.add("game-board__cell");
         cell.id = `cell-${i}-${j}`;
+        cell.setAttribute("data-cy", `cell-${i}-${j}`);
+
         boardWrapper.appendChild(cell);
       }
     }
@@ -51,6 +54,8 @@ class UIBuilder {
     const title = document.createElement("h1");
     title.textContent = "Tic-Tac-Toe";
     const rules = document.createElement("h2");
+    rules.setAttribute("id", "game-status-field");
+    rules.setAttribute("data-cy", "game-status-field");
     rules.textContent = "X goes first.";
     header.appendChild(title);
     header.appendChild(rules);
@@ -76,12 +81,14 @@ class UIBuilder {
 
     const xWinValue = document.createElement("div");
     xWinValue.classList.add("win-status__win-value", "win-status--grid-3");
-    xWinValue.id = "x-win-field";
+    xWinValue.id = "x-win-count";
+    xWinValue.setAttribute("data-cy", "x-win-count");
     xWinValue.textContent = "0";
 
     const oWinValue = document.createElement("div");
     oWinValue.classList.add("win-status__win-value", "win-status--grid-4");
-    oWinValue.id = "o-win-field";
+    oWinValue.id = "o-win-count";
+    oWinValue.setAttribute("data-cy", "o-win-count");
     oWinValue.textContent = "0";
 
     winStatusArea.appendChild(xWinsHeader);
@@ -97,16 +104,17 @@ class UIBuilder {
    * @returns {HTMLElement} The created new game button element.
    */
   _createNewGameButton() {
-    const restartButtonWrapper = document.createElement("div");
-    restartButtonWrapper.classList.add("restart-button");
+    const newGameButtonWrapper = document.createElement("div");
+    newGameButtonWrapper.classList.add("new-game-button");
 
-    const restartButton = document.createElement("button");
-    restartButton.classList.add("restart-button__button");
-    restartButton.textContent = "New Game";
+    const newGameButton = document.createElement("button");
+    newGameButton.classList.add("new-game-button__button");
+    newGameButton.setAttribute("data-cy", "new-game-button");
+    newGameButton.textContent = "New Game";
 
-    restartButtonWrapper.appendChild(restartButton);
+    newGameButtonWrapper.appendChild(newGameButton);
 
-    return restartButtonWrapper;
+    return newGameButtonWrapper;
   }
 }
 

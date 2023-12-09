@@ -4,7 +4,6 @@ const UIBuilder = require("./UIBuilder.js");
  * Game UI accesible interface for getting elements from the DOM and making changes.
  */
 class GameUI {
-  
   /**
    * Retrieves all board cells or cells matching a specific marker.
    * @param {string} [markerToMatch] - Optional marker value to match against cell content.
@@ -64,17 +63,44 @@ class GameUI {
     }
   }
 
-  updateScore() {
-    //updates the score value for the given player
+  //updates the score value for the given player
+  updateScore(playerMarkerToUpdate, newScore) {
+    const playerScoreCount = document.querySelector(
+      `#${playerMarkerToUpdate}-win-count`
+    );
+    playerScoreCount.textContent = newScore;
   }
 
-  highlightWinningCombo() {
-    //highlight the winning combination on the screen
+  //highlight the winning combination on the screen
+  highlightWinningCombo(row, col) {
+    const cellToHighlight = document.querySelector(`#cell-${row}-${col}`);
+    cellToHighlight.classList.add("game-board__cell--highlighted");
+  }
+  /**
+   * Removes all the highlights from the cells that are currently highlighted.
+   */
+  removeCellHighlights() {
+    const highlightedCells = document.querySelectorAll(
+      ".game-board__cell--highlighted"
+    );
+    for (let cell of highlightedCells) {
+      cell.classList.remove("game-board__cell--highlighted");
+    }
   }
 
   getNewGameButton() {
-    const newGameButton = document.querySelector(".restart-button__button");
+    const newGameButton = document.querySelector(".new-game-button__button");
     return newGameButton;
+  }
+
+  setGameStatusField(text) {
+    const gameStatusField = document.querySelector("#game-status-field");
+    if (text) {
+      console.log("Should enter this text:", text);
+      gameStatusField.textContent = text;
+    } else {
+      gameStatusField.textContent = "X goes first.";
+    }
   }
 }
 

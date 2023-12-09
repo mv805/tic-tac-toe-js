@@ -1,7 +1,7 @@
 class Player {
   constructor(marker) {
     this._marker = marker;
-    this._wins = 0;
+    this._score = 0;
   }
 
   get marker() {
@@ -12,12 +12,12 @@ class Player {
   //   this._marker = newMarker;
   // }
 
-  get wins() {
-    return this._wins;
+  get score() {
+    return this._score;
   }
 
-  addWin() {
-    this._wins++;
+  incrementScore() {
+    this._score++;
   }
 }
 
