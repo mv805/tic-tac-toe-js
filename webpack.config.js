@@ -7,9 +7,9 @@ module.exports = {
     index: "./src/index.js",
   },
   devtool: "source-map",
-  devServer: {
-    static: "./dist",
-  },
+  // devServer: {
+  //   static: "./dist",
+  // },
   plugins: [
     new HtmlWebpackPlugin({
       title: "Tic Tac Toe",
