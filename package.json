@@ -12,7 +12,7 @@
     "deploy": "gh-pages -d dist -b gh-pages"
   },
   "repository": {
-    "url": "git+https://mv805.github.io/tic-tac-toe-js/+git"
+    "url": "https://mv805.github.io/tic-tac-toe-js/"
   },
   "homepage": "https://mv805.github.io/tic-tac-toe-js/",
   "author": "",
