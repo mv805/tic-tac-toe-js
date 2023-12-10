@@ -2,11 +2,11 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: {
     index: "./src/index.js",
   },
-  devtool: "inline-source-map",
+  devtool: "source-map",
   devServer: {
     static: "./dist",
   },
@@ -18,6 +18,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/", // Added publicPath for GitHub Pages
   },
   module: {
     rules: [
