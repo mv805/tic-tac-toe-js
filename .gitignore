@@ -12017,13 +12017,6 @@ node_modules/ws/lib/subprotocol.js
 node_modules/ws/lib/validation.js
 node_modules/ws/lib/websocket-server.js
 node_modules/ws/lib/websocket.js
-dist/board.bundle.js
-dist/game.bundle.js
-dist/gameUI.bundle.js
-dist/index.bundle.js
-dist/index.html
-dist/player.bundle.js
-dist/uiBuilder.bundle.js
 node_modules/@discoveryjs/json-ext/package.json
 node_modules/@jridgewell/source-map/package.json
 node_modules/@leichtgewicht/ip-codec/package.json
