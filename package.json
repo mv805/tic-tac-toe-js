@@ -9,12 +9,12 @@
     "start": "webpack serve --open",
     "build": "webpack --mode=production",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -b gh-pages"
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
-    "url": "https://mv805.github.io/tic-tac-toe-js/"
+    "url": "git+https://github.com/mv805/tic-tac-toe-js.git"
   },
-  "homepage": "https://mv805.github.io/tic-tac-toe-js/",
+  "homepage": "http://mv805.github.io/tic-tac-toe-js",
   "author": "",
   "license": "ISC",
   "devDependencies": {
